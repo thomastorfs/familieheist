@@ -1,0 +1,15 @@
+logging:
+  level: 
+    root: ERROR
+
+spring: 
+  datasource:
+    url: jdbc:postgresql://localhost:5432/familieheist
+    username: familieheist
+    password: familieheist
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml    
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
