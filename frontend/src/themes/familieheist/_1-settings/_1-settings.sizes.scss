@@ -1,0 +1,55 @@
+/**
+ * #############################################################################
+ *
+ * Settings: Sizes
+ *
+ * #############################################################################
+ */
+
+/**
+ * header
+ * ---------------------------------------------------------------------------*/
+$header-height: 60px;
+
+/**
+ * sidenav
+ * ---------------------------------------------------------------------------*/
+$sidenav-button-size: 50px;
+
+/**
+ * transitions
+ * ---------------------------------------------------------------------------*/
+$transition-duration: 0.2s;
+$transition-type: ease-out;
+$transition-fadeinout-duration: 5s;
+
+/**
+ * roundings
+ * ---------------------------------------------------------------------------*/
+$border-radius: 5px;
+
+/**
+ * fonts
+ * ---------------------------------------------------------------------------*/
+$font-size-component: 1em;
+$font-size-info-component: 1em;
+
+$font-size-form-label-tiny: 0.75em;
+$font-size-form-label: 1em;
+$font-size-form-label-large: 1.125em;
+$font-size-form-label-extra-large: 1.25em;
+
+$font-size-icon: 1.125em;
+$font-size-icon-large: 1.25em;
+$font-size-icon-menu: 1.5em;
+$font-size-icon-table: 2.5em;
+
+$font-size-body: 1.0rem;
+$font-size-body-large: 1.25rem;
+$font-size-body-tablet: 1.25rem;
+$font-size-body-desktop: 1.25rem;
+
+$font-size-search-form-component: 1.25em;
+
+$line-height-default: 1.063em;
+$line-height-large: 1.375em;

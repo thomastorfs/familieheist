@@ -1,0 +1,42 @@
+/**
+ * #############################################################################
+ *
+ * Objects: Columns
+ *
+ * #############################################################################
+ */
+
+/**
+ * Default - 2 Columns
+ * ---------------------------------------------------------------------------*/
+.cols {
+    @include cols-wrapper;
+
+    .row {
+        clear: both;
+    }
+}
+
+/* tablet narrow */
+.col {
+    @include cols-2--col;
+}
+
+/**
+ * Specific columns
+ * ---------------------------------------------------------------------------*/
+.cols-2--col {
+    @include cols-2--col;
+}
+
+.cols-2--col-mobile {
+    @include cols-2--col-mobile;
+}
+
+.cols-3--col {
+    @include cols-3--col;
+}
+
+.cols-4--col {
+    @include cols-4--col;
+}

@@ -1,0 +1,58 @@
+/**
+ * #############################################################################
+ *
+ * Base: Forms
+ *
+ * #############################################################################
+ */
+
+input[type=text],
+textarea {
+    @include input-field
+}
+
+.form-element {
+    padding-bottom: 1em;
+}
+
+/* material theme overrides */
+.mat-form-field {
+    display: block !important;
+
+    .mat-form-field-wrapper {
+        padding-bottom: 0;
+
+        .ng-touched.ng-invalid {
+            background: $color-error-light;
+            border-color: $color-error;
+            color: $color-error;
+        }
+    }
+
+    .mat-form-field-infix {
+        padding: 0;
+        border-top: none;
+    }
+}
+
+*::placeholder {
+    font-family: $font-sans-serif;
+    color: $color-input-placeholder;
+}
+
+.mat-form-field {
+    .mat-form-field-label {
+        padding-left: 10px;
+        color: $color-input-placeholder;
+        transition: padding $transition-duration $transition-type, transform $transition-duration $transition-type;
+    }
+
+
+}
+
+.mat-form-field-should-float {
+    .mat-form-field-label {
+        padding-left: 0;
+        color: inherit;
+    }
+}

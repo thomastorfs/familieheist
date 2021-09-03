@@ -1,0 +1,19 @@
+/**
+ * #############################################################################
+ *
+ * Settings for Main App Styling
+ *
+ * Global variables and config switches
+ *
+ * Based on ITCSS
+ * https://speakerdeck.com/dafed/managing-css-projects-with-itcss
+ *
+ * #############################################################################
+ */
+
+@import "_1-settings/_1-settings.breakpoints";
+@import "_1-settings/_1-settings.colors";
+@import "_1-settings/_1-settings.fonts";
+@import "_1-settings/_1-settings.icons";
+@import "_1-settings/_1-settings.layout";
+@import "_1-settings/_1-settings.sizes";

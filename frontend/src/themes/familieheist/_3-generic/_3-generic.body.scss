@@ -1,0 +1,35 @@
+/**
+ * #############################################################################
+ *
+ * Generic: Body
+ *
+ * #############################################################################
+ */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background: $color-bg-main;
+    font-size: $font-size-body;
+    font-family: $font-sans-serif;
+    font-weight: 400;
+    line-height: 1.5em;
+    color: $color-font;
+}
+
+/* tablet narrow */
+@media (min-width: $bp-tablet-narrow-min) {
+    body {
+        font-size: $font-size-body-tablet;
+    }
+}
+
+/* desktop */
+@media (min-width: $bp-desktop-min) {
+    body {
+        font-size: $font-size-body-desktop;
+    }
+}

@@ -1,0 +1,40 @@
+/**
+ * #############################################################################
+ *
+ * Settings: Breakpoints
+ *
+ * #############################################################################
+ */
+
+$bp-mobile-narrow-min: 11em;
+$bp-mobile-narrow-max: 20.99em;
+$bp-mobile-wide-min: 21em;
+$bp-mobile-wide-max: 30.99em;
+$bp-tablet-narrow-min: 31em;
+$bp-tablet-narrow-max: 50.99em;
+$bp-tablet-wide-min: 51em;
+$bp-tablet-wide-max: 66.99em;
+$bp-desktop-min: 67em;
+$bp-desktop-max: 81.99em;
+$bp-desktop-large-min: 82em;
+
+/**
+ * Initialize the order of the breakpoints so that the final generated CSS
+ * is rendered in a cascading manner by the browser
+ */
+//@media (min-width: $bp-mobile-narrow-min) {}
+//@media (min-width: $bp-mobile-narrow-min) and (max-width: $bp-mobile-narrow-max) {}
+//@media (max-width: $bp-mobile-narrow-max) {}
+//@media (min-width: $bp-mobile-wide-min) {}
+//@media (min-width: $bp-mobile-wide-min) and (max-width: $bp-mobile-wide-max) {}
+//@media (max-width: $bp-mobile-wide-max) {}
+//@media (min-width: $bp-tablet-narrow-min) {}
+//@media (min-width: $bp-tablet-narrow-min) and (max-width: $bp-tablet-narrow-max) {}
+//@media (max-width: $bp-tablet-narrow-max) {}
+//@media (min-width: $bp-tablet-wide-min) {}
+//@media (min-width: $bp-tablet-wide-min) and (max-width: $bp-tablet-wide-max) {}
+//@media (max-width: $bp-tablet-wide-max) {}
+//@media (min-width: $bp-desktop-min) {}
+//@media (min-width: $bp-desktop-min) and (max-width: $bp-desktop-max) {}
+//@media (max-width: $bp-desktop-max) {}
+//@media (min-width: $bp-desktop-large-min) {}

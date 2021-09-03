@@ -1,0 +1,16 @@
+/**
+ * #############################################################################
+ *
+ * Base: Links
+ *
+ * #############################################################################
+ */
+
+a {
+    color: $color-link;
+    transition: color $transition-duration $transition-type, background $transition-duration $transition-type;
+
+    &:hover {
+        color: $color-link-hover;
+    }
+}

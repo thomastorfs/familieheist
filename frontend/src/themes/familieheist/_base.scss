@@ -1,0 +1,24 @@
+/**
+ * #############################################################################
+ *
+ * Base for Main App Styling
+ *
+ * HTML elements and generic structure classed elements
+ *
+ * Based on ITCSS
+ * https://speakerdeck.com/dafed/managing-css-projects-with-itcss
+ *
+ * #############################################################################
+ */
+
+@import "_4-base/_4-base.forms";
+@import "_4-base/_4-base.headings";
+@import "_4-base/_4-base.iframe";
+@import "_4-base/_4-base.links";
+@import "_4-base/_4-base.buttons";
+@import "_4-base/_4-base.lists";
+@import "_4-base/_4-base.navigations";
+@import "_4-base/_4-base.paginators";
+@import "_4-base/_4-base.paragraphs";
+@import "_4-base/_4-base.picture";
+@import "_4-base/_4-base.tables";

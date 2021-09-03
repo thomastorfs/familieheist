@@ -1,0 +1,109 @@
+/**
+ * #############################################################################
+ *
+ * Settings: Colors
+ *
+ * #############################################################################
+ */
+
+/**
+ * color definitions
+ * ---------------------------------------------------------------------------*/
+
+$color-white: #fff;
+$color-almost-white: #fafafa;
+$color-lightest-grey: #f3f3f3;
+$color-lighter-grey: #eee;
+$color-light-grey: #b9b9b9;
+$color-grey: #808080;
+$color-dark-grey: #555;
+$color-almost-black: #262626;
+$color-black: #000;
+$color-blue: #00abf4;
+$color-light-blue: #4dbceb;
+$color-red: #fc3003;
+$color-orange: #fe5900;
+$color-yellow: #f5af00;
+$color-lightest-green: #c1eeee;
+$color-lighter-green: #85d4ce;
+$color-light-green: #21aca0;
+$color-green: #009688;
+
+$color-primary: $color-blue;
+$color-secondary: $color-green;
+
+/**
+ * assignments
+ * ---------------------------------------------------------------------------*/
+/* backgrounds */
+$color-bg-main: #fafafa;
+$color-bg-white-trans-light: rgba(255, 255, 255, 0.1);
+$color-bg-black-trans-light: rgba(0, 0, 0, 0.03);
+$color-bg-black-trans: rgba(0, 0, 0, 0.2);
+
+/* typography */
+$color-font: $color-almost-black;
+$color-font-hover: $color-dark-grey;
+$color-font-light: $color-white;
+$color-font-header: $color-almost-black;
+$color-font-footer: $color-almost-black;
+
+$color-link: $color-font;
+$color-link-hover: $color-primary;
+
+$color-error: $color-red;
+$color-error-light: lighten($color-red, 50);
+
+/* backgrounds */
+$color-bg-header: $color-almost-black;
+$color-bg-footer: $color-almost-black;
+
+/* forms */
+$color-input-bg: $color-white;
+$color-input-bg-hover: darken($color-white, 3);
+$color-input-border: $color-light-grey;
+$color-input-text: $color-almost-black;
+$color-input-text-hover: $color-almost-black;
+
+$color-input-bg-disabled: $color-lighter-grey;
+$color-input-border-disabled: $color-light-grey;
+$color-input-text-disabled: $color-grey;
+
+$color-input-placeholder: $color-light-grey;
+
+/* tables */
+$color-table-font-header: $color-grey;
+$color-table-cell-border: $color-light-grey;
+
+/* buttons */
+$color-btn-primary-bg: $color-primary;
+$color-btn-primary-bg-hover: lighten($color-primary, 10);
+$color-btn-primary-text: $color-white;
+
+$color-btn-secondary-bg: $color-secondary;
+$color-btn-secondary-bg-hover: lighten($color-secondary, 10);
+$color-btn-secondary-text: $color-white;
+
+$color-btn-nobg-bg: none;
+$color-btn-nobg-bg-hover: lighten($color-primary, 10);
+$color-btn-nobg-text: $color-font;
+$color-btn-nobg-text-hover: $color-white;
+
+$color-btn-modal-bg: none;
+$color-btn-modal-bg-hover: none;
+$color-btn-modal-text: $color-font;
+$color-btn-modal-text-hover: $color-primary;
+
+$color-btn-cancel-bg: $color-light-grey;
+$color-btn-cancel-bg-hover: lighten($color-light-grey, 10);
+$color-btn-cancel-text: $color-white;
+
+$color-btn-delete-bg: $color-red;
+$color-btn-delete-bg-hover: lighten($color-red, 10);
+$color-btn-delete-text: $color-white;
+
+$color-btn-header-bg: none;
+$color-btn-header-bg-hover: lighten($color-primary, 10);
+$color-btn-header-text: $color-font-light;
+$color-btn-header-text-hover: $color-white;
+

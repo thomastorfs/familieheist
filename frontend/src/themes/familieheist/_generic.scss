@@ -1,0 +1,16 @@
+/**
+ * #############################################################################
+ *
+ * Generic for Main App Styling
+ *
+ * Ground-zero styles
+ *
+ * Based on ITCSS
+ * https://speakerdeck.com/dafed/managing-css-projects-with-itcss
+ *
+ * #############################################################################
+ */
+
+@import "vendor/normalize";
+@import "_3-generic/_3-generic.body";
+@import "_3-generic/_3-generic.box-sizing";
