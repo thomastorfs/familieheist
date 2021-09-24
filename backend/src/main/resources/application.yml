@@ -1,14 +1,16 @@
 logging:
-  level: 
+  level:
     root: ERROR
 
-spring: 
+spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/familieheist
     username: familieheist
     password: familieheist
+    driver-class-name: org.postgresql.Driver
   liquibase:
-    change-log: classpath:/db/changelog/db.changelog-master.xml    
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
   jpa:
     properties:
       hibernate:
