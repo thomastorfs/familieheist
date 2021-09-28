@@ -1,10 +1,16 @@
 package be.familieheist.web.user.domain;
 
-import lombok.RequiredArgsConstructor;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@RequiredArgsConstructor
+@Entity
+@Table(name = "role")
 public class Role {
 
-	private String rolename;
+    @Id
+    @Column(name = "rolename")
+    private String rolename;
 
 }

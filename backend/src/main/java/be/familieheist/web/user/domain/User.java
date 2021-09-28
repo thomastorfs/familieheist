@@ -1,16 +1,43 @@
 package be.familieheist.web.user.domain;
 
-import lombok.RequiredArgsConstructor;
+import java.util.ArrayList;
+import java.util.List;
 
-@RequiredArgsConstructor
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user")
 public class User {
 
-    private String username;
-    private String password;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    long id;
 
-    private String email;
+    @Column(name = "username")
+    String username;
 
-    private String firstname;
-    private String lastname;
+    @Column(name = "password")
+    String password;
+
+    @Column(name = "email")
+    String email;
+
+    @Column(name = "firstname")
+    String firstname;
+
+    @Column(name = "lastname")
+    String lastname;
+
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "rolename"))
+    List<Role> roles = new ArrayList<>();
 
 }
