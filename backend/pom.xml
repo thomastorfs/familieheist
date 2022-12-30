@@ -155,7 +155,7 @@
                             <outputDirectory>${basedir}/target/classes/static</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${basedir}/../frontend/dist/frontend</directory>
+                                    <directory>${basedir}/../frontend/dist/familieheist-frontend</directory>
                                     <filtering>false</filtering>
                                 </resource>
                             </resources>
