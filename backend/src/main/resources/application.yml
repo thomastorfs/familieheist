@@ -17,15 +17,15 @@ spring:
         base-path: familieheist
     r2dbc:
         url: r2dbc:postgresql://localhost:5432/familieheist
-        username: familieheist
-        password: familieheist
+        username: localdev
+        password: localdev
         driver-class-name: org.postgresql.Driver
     liquibase:
         enabled: false
         change-log: classpath:db/changelog/db.changelog-main.yml
         url: jdbc:postgresql://localhost:5432/familieheist
-        username: familieheist
-        password: familieheist
+        username: localdev
+        password: localdev
 
 springdoc:
     swagger-ui:

@@ -1,6 +1,6 @@
 databaseChangeLog:
     -   changeSet:
-            id: create-user-table
+            id: create-system-user-table
             author: thomastorfs
             changes:
                 -   createTable:
@@ -27,7 +27,7 @@ databaseChangeLog:
                                     constraints:
                                         uniqueConstraintName: uk_system_user_email
     -   changeSet:
-            id: create-role-table
+            id: create-system-role-table
             author: thomastorfs
             changes:
                 -   createTable:
@@ -41,7 +41,7 @@ databaseChangeLog:
                                         primaryKeyName: pk_system_role_rolename
                                         nullable: false
     -   changeSet:
-            id: create-user-role-table
+            id: create-system-user-role-table
             author: thomastorfs
             changes:
                 -   createTable:
