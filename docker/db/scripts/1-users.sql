@@ -1,3 +1,3 @@
-CREATE USER familieheist WITH PASSWORD 'familieheist';
+CREATE USER localdev WITH PASSWORD 'localdev';
 
 CREATE USER keycloak WITH PASSWORD 'keycloak';

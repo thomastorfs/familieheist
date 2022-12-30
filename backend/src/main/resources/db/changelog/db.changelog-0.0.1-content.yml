@@ -1,0 +1,142 @@
+databaseChangeLog:
+    -   changeSet:
+            id: create-file-table
+            author: thomastorfs
+            changes:
+                - createTable:
+                    tableName: content_file
+                    columns:
+                        -   column:
+                                name: id
+                                type: varchar(36)
+                                constraints:
+                                    primaryKey: true
+                                    nullable: false
+                        -   column:
+                                name: title
+                                type: varchar(255)
+                        -   column:
+                                name: description
+                                type: varchar(1023)
+                        -   column:
+                                name: filename
+                                type: varchar(255)
+                        -   column:
+                                name: filepath
+                                type: varchar(255)
+                        -   column:
+                                name: filetype
+                                type: varchar(255)
+    -   changeSet:
+            id: create-page-table
+            author: thomastorfs
+            changes:
+                - createTable:
+                    tableName: content_page
+                    columns:
+                        -   column:
+                                name: id
+                                type: varchar(36)
+                                constraints:
+                                    primaryKey: true
+                                    nullable: false
+                        -   column:
+                                name: title
+                                type: varchar(255)
+                        -   column:
+                                name: description
+                                type: varchar(1023)
+    -   changeSet:
+            id: create-pagepart-table
+            author: thomastorfs
+            changes:
+                - createTable:
+                    tableName: content_pagepart
+                    columns:
+                        -   column:
+                                name: id
+                                type: varchar(36)
+                                constraints:
+                                    primaryKey: true
+                                    nullable: false
+                        -   column:
+                                name: title
+                                type: varchar(255)
+                        -   column:
+                                name: description
+                                type: varchar(1023)
+    -   changeSet:
+            id: create-page-pagepart-table
+            author: thomastorfs
+            changes:
+                - createTable:
+                    tableName: content_page_pagepart
+                    columns:
+                        -   column:
+                                name: page_id
+                                type: varchar(36)
+                                constraints:
+                                    foreignKeyName: fk_page_pagepart_page_id
+                                    references: content_page(id)
+                        -   column:
+                                name: pagepart_id
+                                type: varchar(36)
+                                constraints:
+                                    foreignKeyName: fk_page_pagepart_pagepart_id
+                                    references: content_pagepart(id)
+                        -   column:
+                                name: order
+                                type: smallint
+    -   changeSet:
+            id: create-item-table
+            author: thomastorfs
+            changes:
+                - createTable:
+                    tableName: content_item
+                    columns:
+                        -   column:
+                                name: id
+                                type: varchar(36)
+                                constraints:
+                                    primaryKey: true
+                                    nullable: false
+                        -   column:
+                                name: title
+                                type: varchar(255)
+                        -   column:
+                                name: description
+                                type: varchar(1023)
+                        -   column:
+                                name: type
+                                type: text
+                        -   column:
+                                name: text
+                                type: clob
+                        -   column:
+                                name: content_file_id
+                                type: varchar(36)
+                                constraints:
+                                    foreignKeyName: fk_item_content_file_id
+                                    references: content_file(id)
+    -   changeSet:
+            id: create-pagepart-item-table
+            author: thomastorfs
+            changes:
+                -   createTable:
+                        tableName: content_pagepart_item
+                        columns:
+                            -   column:
+                                    name: pagepart_id
+                                    type: varchar(36)
+                                    constraints:
+                                        foreignKeyName: fk_pagepart_item_pagepart_id
+                                        references: content_pagepart(id)
+                            -   column:
+                                    name: item_id
+                                    type: varchar(36)
+                                    constraints:
+                                        foreignKeyName: fk_page_pagepart_pagepart_id
+                                        references: content_item(id)
+                            -   column:
+                                    name: order
+                                    type: smallint

@@ -1,5 +1,5 @@
 CREATE DATABASE familieheist;
-GRANT ALL PRIVILEGES ON DATABASE familieheist TO familieheist;
+GRANT ALL PRIVILEGES ON DATABASE familieheist TO localdev;
 
 CREATE DATABASE keycloak;
 GRANT ALL PRIVILEGES ON DATABASE keycloak TO keycloak;

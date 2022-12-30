@@ -1,0 +1,63 @@
+databaseChangeLog:
+    -   changeSet:
+            id: create-user-table
+            author: thomastorfs
+            changes:
+                -   createTable:
+                        tableName: system_user
+                        columns:
+                            -   column:
+                                    name: id
+                                    type: varchar(36)
+                                    constraints:
+                                        primaryKey: true
+                                        primaryKeyName: pk_system_user_id
+                                        nullable: false
+                            -   column:
+                                    name: username
+                                    type: varchar(50)
+                                    constraints:
+                                        uniqueConstraintName: uk_system_user_username
+                            -   column:
+                                    name: password
+                                    type: varchar(255)
+                            -   column:
+                                    name: email
+                                    type: varchar(100)
+                                    constraints:
+                                        uniqueConstraintName: uk_system_user_email
+    -   changeSet:
+            id: create-role-table
+            author: thomastorfs
+            changes:
+                -   createTable:
+                        tableName: system_role
+                        columns:
+                            -   column:
+                                    name: rolename
+                                    type: varchar(50)
+                                    constraints:
+                                        primaryKey: true
+                                        primaryKeyName: pk_system_role_rolename
+                                        nullable: false
+    -   changeSet:
+            id: create-user-role-table
+            author: thomastorfs
+            changes:
+                -   createTable:
+                        tableName: system_user_role
+                        columns:
+                            -   column:
+                                    name: user_id
+                                    type: varchar(36)
+                                    constraints:
+                                        nullable: false
+                                        foreignKeyName: fk_system_user_role_user_id
+                                        references: system_user(id)
+                            -   column:
+                                    name: rolename
+                                    type: varchar(50)
+                                    constraints:
+                                        nullable: false
+                                        foreignKeyName: fk_system_user_role_rolename
+                                        references: system_role(rolename)
