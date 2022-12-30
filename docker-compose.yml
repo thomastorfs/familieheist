@@ -15,8 +15,8 @@ services:
             - POSTGRES_USER=root
             - POSTGRES_PASSWORD=password
         volumes:
-            - ./db/scripts/:/docker-entrypoint-initdb.d/
-            - ./db/data:/var/lib/postgresql/data/
+            - ./docker/db/scripts/:/docker-entrypoint-initdb.d/
+            - ./docker/db/data:/var/lib/postgresql/data/
 
     keycloak:
         image: quay.io/keycloak/keycloak:latest
