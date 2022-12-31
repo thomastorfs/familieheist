@@ -12,19 +12,19 @@ import org.springframework.data.relational.core.mapping.Table;
 public class PagepartDBO implements Persistable<String> {
     @Id
     @Column("id")
-    String id;
+    private String id;
 
     @Column("page_id")
-    String pageId;
+    private String pageId;
 
     @Column("order")
-    Integer order;
+    private Integer order;
 
     @Column("title")
-    String title;
+    private String title;
 
     @Column("description")
-    String description;
+    private String description;
 
     @Transient
     private boolean isNew = false;

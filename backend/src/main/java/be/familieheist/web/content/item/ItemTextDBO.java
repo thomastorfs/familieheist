@@ -12,13 +12,13 @@ import org.springframework.data.relational.core.mapping.Table;
 public class ItemTextDBO implements Persistable<String> {
     @Id
     @Column("id")
-    String id;
+    private String id;
 
     @Column("content_item_id")
-    String itemId;
+    private String itemId;
 
     @Column("text")
-    String text;
+    private String text;
 
     @Transient
     private boolean isNew = false;

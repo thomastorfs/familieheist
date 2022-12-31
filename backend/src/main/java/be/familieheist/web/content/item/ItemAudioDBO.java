@@ -12,13 +12,13 @@ import org.springframework.data.relational.core.mapping.Table;
 public class ItemAudioDBO implements Persistable<String> {
     @Id
     @Column("id")
-    String id;
+    private String id;
 
     @Column("content_item_id")
-    String itemId;
+    private String itemId;
 
     @Column("audio_uri")
-    String audioUri;
+    private String audioUri;
 
     @Transient
     private boolean isNew = false;

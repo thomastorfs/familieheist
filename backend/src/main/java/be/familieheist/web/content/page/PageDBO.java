@@ -12,16 +12,16 @@ import org.springframework.data.relational.core.mapping.Table;
 public class PageDBO implements Persistable<String> {
     @Id
     @Column("id")
-    String id;
+    private String id;
 
     @Column("title")
-    String title;
+    private String title;
 
     @Column("description")
-    String description;
+    private String description;
 
     @Column("url")
-    String url;
+    private String url;
 
     @Transient
     private boolean isNew = false;

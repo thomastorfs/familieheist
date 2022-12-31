@@ -12,22 +12,22 @@ import org.springframework.data.relational.core.mapping.Table;
 public class ItemDBO implements Persistable<String> {
     @Id
     @Column("id")
-    String id;
+    private String id;
 
     @Column("pagepart_id")
-    String pagepartId;
+    private String pagepartId;
 
     @Column("order")
-    Integer order;
+    private Integer order;
 
     @Column("title")
-    String title;
+    private String title;
 
     @Column("description")
-    String description;
+    private String description;
 
     @Column("type")
-    ItemType type;
+    private ItemType type;
 
     @Transient
     private boolean isNew = false;

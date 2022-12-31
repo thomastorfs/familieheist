@@ -12,13 +12,13 @@ import org.springframework.data.relational.core.mapping.Table;
 public class ItemImageDBO implements Persistable<String> {
     @Id
     @Column("id")
-    String id;
+    private String id;
 
     @Column("content_item_id")
-    String itemId;
+    private String itemId;
 
     @Column("image_uri")
-    String imageUri;
+    private String imageUri;
 
     @Transient
     private boolean isNew = false;

@@ -12,19 +12,19 @@ import org.springframework.data.relational.core.mapping.Table;
 public class ItemFileDBO implements Persistable<String> {
     @Id
     @Column("id")
-    String id;
+    private String id;
 
     @Column("content_item_id")
-    String itemId;
+    private String itemId;
 
     @Column("file_type")
-    ItemFileType fileType;
+    private ItemFileType fileType;
 
     @Column("file_name")
-    String fileName;
+    private String fileName;
 
     @Column("file_uri")
-    String fileUri;
+    private String fileUri;
 
     @Transient
     private boolean isNew = false;

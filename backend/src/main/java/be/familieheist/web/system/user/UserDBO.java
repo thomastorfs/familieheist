@@ -9,17 +9,17 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("user")
 public class UserDBO {
     @Id
-    String id;
+    private String id;
 
     @Column("username")
-    String username;
+    private String username;
 
     @Column("password")
-    String password;
+    private String password;
 
     @Column("email")
-    String email;
+    private String email;
 
     @Column("role")
-    Role role;
+    private Role role;
 }
