@@ -30,4 +30,13 @@ public class PageDBO implements Persistable<String> {
     public boolean isNew() {
         return isNew;
     }
+
+    public PageDTO toDto() {
+        return PageDTO.builder()
+            .id(id)
+            .title(title)
+            .description(description)
+            .url(url)
+            .build();
+    }
 }
