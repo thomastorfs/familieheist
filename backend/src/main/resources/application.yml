@@ -29,6 +29,10 @@ spring:
     url: jdbc:postgresql://localhost:5432/familieheist
     username: localdev
     password: localdev
+  jackson:
+    time-zone: Europe/Brussels
+    serialization:
+      INDENT_OUTPUT: true
 
 springdoc:
   swagger-ui:
