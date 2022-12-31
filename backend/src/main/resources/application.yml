@@ -1,56 +1,56 @@
 app:
-    name: Familie Heist
-    description: Website for family coming from Heist-op-den-Berg and surroundings
+  name: Familie Heist
+  description: Website for family coming from Heist-op-den-Berg and surroundings
 
 server:
-    port: 8000
-    error:
-        include-message: always
+  port: 8000
+  error:
+    include-message: always
 
 logging:
-    level:
-        root: ERROR
-        be.familieheist: DEBUG
+  level:
+    root: ERROR
+    be.familieheist: DEBUG
 
 spring:
-    webflux:
-        base-path: familieheist
-    r2dbc:
-        url: r2dbc:postgresql://localhost:5432/familieheist
-        username: localdev
-        password: localdev
-        driver-class-name: org.postgresql.Driver
-    liquibase:
-        enabled: false
-        change-log: classpath:db/changelog/db.changelog-main.yml
-        url: jdbc:postgresql://localhost:5432/familieheist
-        username: localdev
-        password: localdev
+  webflux:
+    base-path: familieheist
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/familieheist
+    username: localdev
+    password: localdev
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: false
+    change-log: classpath:db/changelog/db.changelog-main.yml
+    url: jdbc:postgresql://localhost:5432/familieheist
+    username: localdev
+    password: localdev
 
 springdoc:
-    swagger-ui:
-        displayRequestDuration: true
-        path: /swagger-ui.html
+  swagger-ui:
+    displayRequestDuration: true
+    path: /swagger-ui.html
 
 management:
-    info:
-        env:
-            enabled: true
-    endpoints:
-        web:
-            exposure:
-                include: health, info, env
-    endpoint:
-        health:
-            show-details: always
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health, info, env
+  endpoint:
+    health:
+      show-details: always
 
 info:
-    app:
-        environments: ${spring.config.activate.on-profile}
-        name: ${app.name}
-        description: {app.description}
-        database:
-            type: PostgreSQL
-            url: ${spring.r2dbc.url}
-        java:
-            version: {java.version}
+  app:
+    environments: ${spring.config.activate.on-profile}
+    name: ${app.name}
+    description: { app.description }
+    database:
+      type: PostgreSQL
+      url: ${spring.r2dbc.url}
+    java:
+      version: { java.version }
