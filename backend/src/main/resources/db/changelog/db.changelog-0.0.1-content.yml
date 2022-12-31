@@ -1,33 +1,5 @@
 databaseChangeLog:
   - changeSet:
-      id: create-content-file-table
-      author: thomastorfs
-      changes:
-        - createTable:
-            tableName: content_file
-            columns:
-              - column:
-                  name: id
-                  type: varchar(36)
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-              - column:
-                  name: title
-                  type: varchar(255)
-              - column:
-                  name: description
-                  type: varchar(1023)
-              - column:
-                  name: filename
-                  type: varchar(255)
-              - column:
-                  name: filepath
-                  type: varchar(255)
-              - column:
-                  name: filetype
-                  type: varchar(255)
-  - changeSet:
       id: create-content-page-table
       author: thomastorfs
       changes:
@@ -46,6 +18,9 @@ databaseChangeLog:
               - column:
                   name: description
                   type: varchar(1023)
+              - column:
+                  name: url
+                  type: varchar(255)
   - changeSet:
       id: create-content-pagepart-table
       author: thomastorfs
@@ -60,33 +35,20 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: title
-                  type: varchar(255)
-              - column:
-                  name: description
-                  type: varchar(1023)
-  - changeSet:
-      id: create-content-page-pagepart-table
-      author: thomastorfs
-      changes:
-        - createTable:
-            tableName: content_page_pagepart
-            columns:
-              - column:
                   name: page_id
                   type: varchar(36)
                   constraints:
                     foreignKeyName: fk_content_page_pagepart_page_id
                     references: content_page(id)
               - column:
-                  name: pagepart_id
-                  type: varchar(36)
-                  constraints:
-                    foreignKeyName: fk_content_page_pagepart_pagepart_id
-                    references: content_pagepart(id)
-              - column:
                   name: order
                   type: smallint
+              - column:
+                  name: title
+                  type: varchar(255)
+              - column:
+                  name: description
+                  type: varchar(1023)
   - changeSet:
       id: create-content-item-table
       author: thomastorfs
@@ -101,6 +63,15 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
+                  name: pagepart_id
+                  type: varchar(36)
+                  constraints:
+                    foreignKeyName: fk_content_item_pagepart_id
+                    references: content_pagepart(id)
+              - column:
+                  name: order
+                  type: smallint
+              - column:
                   name: title
                   type: varchar(255)
               - column:
@@ -108,35 +79,120 @@ databaseChangeLog:
                   type: varchar(1023)
               - column:
                   name: type
-                  type: text
-              - column:
-                  name: text
-                  type: clob
-              - column:
-                  name: content_file_id
-                  type: varchar(36)
-                  constraints:
-                    foreignKeyName: fk_content_item_content_file_id
-                    references: content_file(id)
+                  type: varchar(63)
   - changeSet:
-      id: create-content-pagepart-item-table
+      id: create-content-item-text-table
       author: thomastorfs
       changes:
         - createTable:
-            tableName: content_pagepart_item
+            tableName: content_item_text
             columns:
               - column:
-                  name: pagepart_id
+                  name: id
                   type: varchar(36)
                   constraints:
-                    foreignKeyName: fk_content_pagepart_item_pagepart_id
-                    references: content_pagepart(id)
+                    primaryKey: true
+                    nullable: false
               - column:
-                  name: item_id
+                  name: content_item_id
                   type: varchar(36)
                   constraints:
-                    foreignKeyName: fk_content_pagepart_item_item_id
+                    foreignKeyName: fk_content_item_text_content_item_id
                     references: content_item(id)
               - column:
-                  name: order
-                  type: smallint
+                  name: text
+                  type: clob
+  - changeSet:
+      id: create-content-item-image-table
+      author: thomastorfs
+      changes:
+        - createTable:
+            tableName: content_item_image
+            columns:
+              - column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: content_item_id
+                  type: varchar(36)
+                  constraints:
+                    foreignKeyName: fk_content_item_image_content_item_id
+                    references: content_item(id)
+              - column:
+                  name: image_uri
+                  type: varchar(255)
+  - changeSet:
+      id: create-content-item-video-table
+      author: thomastorfs
+      changes:
+        - createTable:
+            tableName: content_item_video
+            columns:
+              - column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: content_item_id
+                  type: varchar(36)
+                  constraints:
+                    foreignKeyName: fk_content_item_video_content_item_id
+                    references: content_item(id)
+              - column:
+                  name: video_uri
+                  type: varchar(255)
+  - changeSet:
+      id: create-content-item-audio-table
+      author: thomastorfs
+      changes:
+        - createTable:
+            tableName: content_item_audio
+            columns:
+              - column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: content_item_id
+                  type: varchar(36)
+                  constraints:
+                    foreignKeyName: fk_content_item_audio_content_item_id
+                    references: content_item(id)
+              - column:
+                  name: audio_uri
+                  type: varchar(255)
+  - changeSet:
+      id: create-content-item-file-table
+      author: thomastorfs
+      changes:
+        - createTable:
+            tableName: content_item_file
+            columns:
+              - column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: content_item_id
+                  type: varchar(36)
+                  constraints:
+                    foreignKeyName: fk_content_file_item_content_item_id
+                    references: content_item(id)
+              - column:
+                  name: file_type
+                  type: varchar(255)
+              - column:
+                  name: file_name
+                  type: varchar(255)
+              - column:
+                  name: file_uri
+                  type: varchar(255)
