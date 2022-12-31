@@ -13,6 +13,9 @@ logging:
     be.familieheist: DEBUG
 
 spring:
+  config:
+    activate:
+      on-profile: default
   webflux:
     base-path: familieheist
   r2dbc:
