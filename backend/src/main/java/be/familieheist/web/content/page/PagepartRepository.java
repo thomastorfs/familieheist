@@ -5,5 +5,5 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface PagepartRepository extends ReactiveSortingRepository<PagepartDBO, String> {
-    Flux<PagepartDBO> findByPageIdOrderByPosition(String pageId);
+    Flux<PagepartDBO> findByPageId(String pageId);
 }

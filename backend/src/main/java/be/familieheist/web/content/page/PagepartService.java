@@ -14,7 +14,7 @@ public class PagepartService {
 
     public Mono<List<PagepartDTO>> getPageById(String pageId) {
         return pagepartRepository
-            .findByPageIdOrderByPosition(pageId)
+            .findByPageId(pageId)
             .map(PagepartDBO::toDto)
             .collectSortedList(Comparator.comparing(PagepartDTO::position));
     }
