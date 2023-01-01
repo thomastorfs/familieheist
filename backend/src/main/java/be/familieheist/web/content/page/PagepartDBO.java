@@ -17,8 +17,11 @@ public class PagepartDBO implements Persistable<String> {
     @Column("page_id")
     private String pageId;
 
-    @Column("order")
-    private Integer order;
+    @Column("position")
+    private Integer position;
+
+    @Column("type")
+    private PagepartType type;
 
     @Column("title")
     private String title;
@@ -32,5 +35,15 @@ public class PagepartDBO implements Persistable<String> {
     @Override
     public boolean isNew() {
         return isNew;
+    }
+
+    public PagepartDTO toDto() {
+        return PagepartDTO.builder()
+            .id(id)
+            .type(type)
+            .title(title)
+            .description(description)
+            .position(position)
+            .build();
     }
 }

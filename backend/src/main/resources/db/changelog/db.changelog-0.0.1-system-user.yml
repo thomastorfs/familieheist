@@ -15,7 +15,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: username
-                  type: varchar(50)
+                  type: varchar(31)
                   constraints:
                     uniqueConstraintName: uk_system_user_username
               - column:
@@ -28,6 +28,6 @@ databaseChangeLog:
                     uniqueConstraintName: uk_system_user_email
               - column:
                   name: role
-                  type: varchar(50)
+                  type: varchar(31)
                   constraints:
                     nullable: false

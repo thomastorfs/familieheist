@@ -17,8 +17,8 @@ public class ItemDBO implements Persistable<String> {
     @Column("pagepart_id")
     private String pagepartId;
 
-    @Column("order")
-    private Integer order;
+    @Column("position")
+    private Integer position;
 
     @Column("title")
     private String title;

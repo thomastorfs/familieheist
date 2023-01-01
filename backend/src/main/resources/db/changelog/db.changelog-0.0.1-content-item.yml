@@ -19,7 +19,7 @@ databaseChangeLog:
                     foreignKeyName: fk_content_item_pagepart_id
                     references: content_pagepart(id)
               - column:
-                  name: order
+                  name: position
                   type: smallint
               - column:
                   name: title

@@ -21,6 +21,8 @@ databaseChangeLog:
               - column:
                   name: url
                   type: varchar(255)
+                  constraints:
+                    uniqueConstraintName: uk_content_page_url
   - changeSet:
       id: create-content-pagepart-table
       author: thomastorfs
@@ -41,8 +43,13 @@ databaseChangeLog:
                     foreignKeyName: fk_content_page_pagepart_page_id
                     references: content_page(id)
               - column:
-                  name: order
+                  name: position
                   type: smallint
+              - column:
+                  name: type
+                  type: varchar(31)
+                  constraints:
+                    nullable: false
               - column:
                   name: title
                   type: varchar(255)
