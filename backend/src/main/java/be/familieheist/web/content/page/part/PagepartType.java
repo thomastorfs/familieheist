@@ -1,4 +1,4 @@
-package be.familieheist.web.content.page;
+package be.familieheist.web.content.page.part;
 
 public enum PagepartType {
     COLUMNS_1,

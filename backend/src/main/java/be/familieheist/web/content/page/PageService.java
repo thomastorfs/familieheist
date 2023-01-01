@@ -1,5 +1,6 @@
 package be.familieheist.web.content.page;
 
+import be.familieheist.web.content.page.part.PagepartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class PageService {
     }
 
     private Mono<PageDTO> aggregatePageparts(PageDTO pageDTO) {
-        return pagepartService.getPageById(pageDTO.id())
+        return pagepartService.getPagepartById(pageDTO.id())
             .map(pageparts -> pageDTO.toBuilder().pageparts(pageparts).build());
     }
 }

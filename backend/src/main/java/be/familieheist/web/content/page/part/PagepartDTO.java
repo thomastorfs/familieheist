@@ -1,4 +1,4 @@
-package be.familieheist.web.content.page;
+package be.familieheist.web.content.page.part;
 
 import be.familieheist.web.content.item.ItemDTO;
 import io.swagger.v3.oas.annotations.media.Schema;

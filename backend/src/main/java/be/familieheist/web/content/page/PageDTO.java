@@ -1,5 +1,6 @@
 package be.familieheist.web.content.page;
 
+import be.familieheist.web.content.page.part.PagepartDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 

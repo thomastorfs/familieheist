@@ -1,4 +1,4 @@
-package be.familieheist.web.content.page;
+package be.familieheist.web.content.page.part;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

@@ -1,4 +1,4 @@
-package be.familieheist.web.content.page;
+package be.familieheist.web.content.page.part;
 
 import be.familieheist.web.content.item.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,12 @@ public class PagepartService {
     private final PagepartRepository pagepartRepository;
     private final ItemService itemService;
 
-    public Mono<List<PagepartDTO>> getPageById(String pageId) {
+    public Mono<PagepartDTO> createPagepart(PagepartCreateCommandDTO createCommandDTO) {
+        return pagepartRepository.save(createCommandDTO.toDbo())
+            .map(PagepartDBO::toDto);
+    }
+
+    public Mono<List<PagepartDTO>> getPagepartById(String pageId) {
         return pagepartRepository
             .findByPageId(pageId)
             .map(PagepartDBO::toDto)
