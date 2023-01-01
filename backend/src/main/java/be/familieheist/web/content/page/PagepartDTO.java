@@ -15,9 +15,5 @@ public record PagepartDTO(
     PagepartType type,
     @Schema(description = "The position  of the Content Pagepart within the Content Page")
     Integer position
-) implements Comparable<PagepartDTO> {
-    @Override
-    public int compareTo(PagepartDTO pagepartDTO) {
-        return position.compareTo(pagepartDTO.position);
-    }
+) {
 }
