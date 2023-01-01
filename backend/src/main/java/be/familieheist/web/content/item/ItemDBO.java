@@ -36,4 +36,14 @@ public class ItemDBO implements Persistable<String> {
     public boolean isNew() {
         return isNew;
     }
+
+    public ItemDTO toDto() {
+        return ItemDTO.builder()
+            .id(id)
+            .title(title)
+            .description(description)
+            .type(type)
+            .position(position)
+            .build();
+    }
 }
