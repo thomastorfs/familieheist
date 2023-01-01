@@ -11,6 +11,7 @@ logging:
   level:
     root: ERROR
     org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
     be.familieheist: DEBUG
 
 spring:
@@ -18,7 +19,7 @@ spring:
     activate:
       on-profile: default
   webflux:
-    base-path: familieheist
+    base-path: /
   r2dbc:
     url: r2dbc:postgresql://localhost:5432/familieheist
     username: localdev
@@ -43,7 +44,6 @@ spring:
 springdoc:
   swagger-ui:
     displayRequestDuration: true
-    path: /swagger-ui.html
 
 management:
   info:

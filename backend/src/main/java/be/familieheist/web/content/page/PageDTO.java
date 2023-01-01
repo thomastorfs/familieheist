@@ -5,13 +5,13 @@ import lombok.Builder;
 
 @Builder
 public record PageDTO(
-    @Schema(description = "TODO", example = "TODO")
+    @Schema(description = "Identifier for a Content Page", example = "10b054f1-a472-40c6-abed-895492271b96")
     String id,
-    @Schema(description = "TODO", example = "TODO")
+    @Schema(description = "The title of the Content Page", example = "The Family Tree")
     String title,
-    @Schema(description = "TODO", example = "TODO")
+    @Schema(description = "The description of the Content Page", example = "This page shows a family tree")
     String description,
-    @Schema(description = "TODO", example = "TODO")
+    @Schema(description = "The URL in order to access the Content Page in the Front-End", example = "familytree")
     String url
 ) {
 }

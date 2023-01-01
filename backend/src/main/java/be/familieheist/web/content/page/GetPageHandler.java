@@ -15,18 +15,15 @@ public class GetPageHandler {
     private final PageService pageService;
 
     @Operation(
-        tags = "TODO",
-        summary = "TODO",
-        description = "TODO",
-        security = @SecurityRequirement(name = "basicAuth"),
+        tags = "getPageById",
+        summary = "Get Content Page by ID",
+        description = "Return all information regarding a single Content Page",
+//        security = @SecurityRequirement(name = "basicAuth"),
         responses = {
-            @ApiResponse(responseCode = "200", description = "TODO"),
-            @ApiResponse(responseCode = "401", description = "TODO"),
-            @ApiResponse(responseCode = "403", description = "TODO"),
-            @ApiResponse(responseCode = "404", description = "TODO"),
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved the Content Page")
         }
     )
-    public Mono<PageDTO> getPageById(@Parameter(in = ParameterIn.PATH, description = "TODO") String id) {
+    public Mono<PageDTO> getPageById(@Parameter(in = ParameterIn.PATH, description = "Content Page ID") String id) {
         return pageService.getPageById(id);
     }
 }

@@ -26,11 +26,12 @@ public class SecurityConfiguration {
     SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http, Converter<Jwt, Mono<AbstractAuthenticationToken>> jwtAuthenticationConverter) {
         http
             .authorizeExchange()
-            .pathMatchers("/familieheist/**")
-            .hasAnyAuthority(Arrays.stream(Role.values()).map(Enum::toString).collect(Collectors.joining()))
-            .anyExchange().authenticated()
-            .and()
-            .oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter);
+            .pathMatchers("/**")
+            .permitAll();
+//            .hasAnyAuthority(Arrays.stream(Role.values()).map(Enum::toString).collect(Collectors.joining()))
+//            .anyExchange().authenticated()
+//            .and()
+//            .oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter);
         return http.build();
     }
 
