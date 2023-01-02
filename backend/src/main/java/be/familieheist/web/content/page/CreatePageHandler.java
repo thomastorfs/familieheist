@@ -1,6 +1,5 @@
 package be.familieheist.web.content.page;
 
-import be.familieheist.web.content.page.part.PagepartDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;

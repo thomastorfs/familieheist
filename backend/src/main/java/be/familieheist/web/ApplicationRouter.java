@@ -1,8 +1,6 @@
 package be.familieheist.web;
 
-import be.familieheist.web.content.page.CreatePageHandler;
-import be.familieheist.web.content.page.GetPageHandler;
-import be.familieheist.web.content.page.PageCreateCommandDTO;
+import be.familieheist.web.content.page.*;
 import be.familieheist.web.content.page.part.CreatePagepartHandler;
 import be.familieheist.web.content.page.part.PagepartCreateCommandDTO;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +21,7 @@ public class ApplicationRouter {
     @Bean
     public RouterFunction<ServerResponse> routes(CreatePageHandler createPageHandler,
                                                  GetPageHandler getPageHandler,
+                                                 UpdatePageHandler updatePageHandler,
                                                  CreatePagepartHandler createPagepartHandler) {
         return route()
             .POST("/api/page",
@@ -33,6 +32,10 @@ public class ApplicationRouter {
                 accept(MediaType.APPLICATION_JSON),
                 serverRequest -> getPageById(getPageHandler, serverRequest),
                 consumer -> consumer.beanClass(GetPageHandler.class).beanMethod("getPageById").build())
+            .PUT("/api/page/{id}",
+                accept(MediaType.APPLICATION_JSON),
+                serverRequest -> updatePageById(updatePageHandler, serverRequest),
+                consumer -> consumer.beanClass(UpdatePageHandler.class).beanMethod("updatePageById").build())
             .POST("/api/pagepart",
                 accept(MediaType.APPLICATION_JSON),
                 serverRequest -> createPagepart(createPagepartHandler, serverRequest),
@@ -52,8 +55,14 @@ public class ApplicationRouter {
 
     private Mono<ServerResponse> getPageById(GetPageHandler getPageHandler, ServerRequest serverRequest) {
         String pageId = serverRequest.pathVariable("id");
-
         return getPageHandler.getPageById(pageId)
+            .flatMap(pageDTO -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(pageDTO));
+    }
+
+    private Mono<ServerResponse> updatePageById(UpdatePageHandler updatePageHandler, ServerRequest serverRequest) {
+        String pageId = serverRequest.pathVariable("id");
+        return serverRequest.bodyToMono(PageUpdateCommandDTO.class)
+            .flatMap(pageUpdateCommand -> updatePageHandler.updatePageById(pageId, pageUpdateCommand))
             .flatMap(pageDTO -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(pageDTO));
     }
 

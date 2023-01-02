@@ -1,8 +1,10 @@
 package be.familieheist.web.content.page;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 
-public record PageCreateCommandDTO(
+@Builder(toBuilder = true)
+public record PageUpdateCommandDTO(
     @Schema(description = "The title of the Content Page", example = "The Family Tree")
     String title,
     @Schema(description = "The description of the Content Page", example = "This page shows a family tree")

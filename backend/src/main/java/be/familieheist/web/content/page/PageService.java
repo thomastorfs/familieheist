@@ -14,7 +14,8 @@ public class PageService {
     private final PagepartService pagepartService;
 
     public Mono<PageDTO> createPage(PageCreateCommandDTO pageCreateCommandDTO) {
-        return pageRepository.save(pageCreateCommandDTO.toPageDbo())
+        PageDBO pageDBO = PageDBOCreator.createDBOFromCreateCommand(pageCreateCommandDTO);
+        return pageRepository.save(pageDBO)
             .map(PageDBO::toDto);
     }
 
@@ -24,6 +25,12 @@ public class PageService {
             .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "No Content Page found with ID `%s`".formatted(id))))
             .map(PageDBO::toDto)
             .flatMap(this::aggregatePageparts);
+    }
+
+    public Mono<PageDTO> updatePageById(String id, PageUpdateCommandDTO pageUpdateCommandDTO) {
+        PageDBO pageDBO = PageDBOCreator.createDBOFromUpdateCommand(id, pageUpdateCommandDTO);
+        return pageRepository.save(pageDBO)
+            .map(PageDBO::toDto);
     }
 
     private Mono<PageDTO> aggregatePageparts(PageDTO pageDTO) {
