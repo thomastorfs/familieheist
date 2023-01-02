@@ -13,6 +13,11 @@ public class PageService {
     private final PageRepository pageRepository;
     private final PagepartService pagepartService;
 
+    public Mono<PageDTO> createPage(PageCreateCommandDTO pageCreateCommandDTO) {
+        return pageRepository.save(pageCreateCommandDTO.toPageDbo())
+            .map(PageDBO::toDto);
+    }
+
     public Mono<PageDTO> getPageById(String id) {
         return pageRepository
             .findById(id)

@@ -15,7 +15,7 @@ public class PagepartService {
     private final ItemService itemService;
 
     public Mono<PagepartDTO> createPagepart(PagepartCreateCommandDTO createCommandDTO) {
-        return pagepartRepository.save(createCommandDTO.toDbo())
+        return pagepartRepository.save(createCommandDTO.toPagepartDBO())
             .map(PagepartDBO::toDto);
     }
 

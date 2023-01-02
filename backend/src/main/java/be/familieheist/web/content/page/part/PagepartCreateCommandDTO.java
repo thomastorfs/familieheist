@@ -7,17 +7,23 @@ import java.util.UUID;
 public record PagepartCreateCommandDTO(
     @Schema(description = "Identifier for a Content Pagepart", example = "29d062ad-969d-43e3-93f0-3efb17bbbdb5")
     String pageId,
-    @Schema(description = "The generic data for the Content Pagepart")
-    PagepartDTO pagepart
+    @Schema(description = "The title of the Content Pagepart", example = "Introduction: Uncle Bob")
+    String title,
+    @Schema(description = "The description of the Content Pagepart", example = "This is how Uncle Bob's life started")
+    String description,
+    @Schema(description = "The type of the Content Pagepart")
+    PagepartType type,
+    @Schema(description = "The position of the Content Pagepart within the Content Page")
+    Integer position
 ) {
-    public PagepartDBO toDbo() {
+    public PagepartDBO toPagepartDBO() {
         PagepartDBO pagepartDBO = new PagepartDBO();
         pagepartDBO.setNew(true);
         pagepartDBO.setId(UUID.randomUUID().toString());
-        pagepartDBO.setTitle(pagepart.title());
-        pagepartDBO.setDescription(pagepart.description());
-        pagepartDBO.setType(pagepart.type());
-        pagepartDBO.setPosition(pagepart.position());
+        pagepartDBO.setTitle(title);
+        pagepartDBO.setDescription(description);
+        pagepartDBO.setType(type);
+        pagepartDBO.setPosition(position);
         return pagepartDBO;
     }
 }

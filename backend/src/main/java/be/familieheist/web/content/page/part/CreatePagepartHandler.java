@@ -18,7 +18,7 @@ public class CreatePagepartHandler {
         description = "Create a single Content Pagepart for a specific page",
 //        security = @SecurityRequirement(name = "basicAuth"),
         responses = {
-            @ApiResponse(responseCode = "200", description = "Successfully retrieved the Content Pagepart")
+            @ApiResponse(responseCode = "201", description = "Successfully created the Content Pagepart")
         }
     )
     public Mono<PagepartDTO> createPagepart(@RequestBody PagepartCreateCommandDTO createCommandDTO) {

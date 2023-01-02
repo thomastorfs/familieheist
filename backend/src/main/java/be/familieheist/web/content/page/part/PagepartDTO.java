@@ -16,7 +16,7 @@ public record PagepartDTO(
     String description,
     @Schema(description = "The type of the Content Pagepart")
     PagepartType type,
-    @Schema(description = "The position  of the Content Pagepart within the Content Page")
+    @Schema(description = "The position of the Content Pagepart within the Content Page")
     Integer position,
     @Schema(description = "The Content Items belonging to this Content Pagepart")
     List<ItemDTO> items
