@@ -22,6 +22,7 @@ public class ApplicationRouter {
     public RouterFunction<ServerResponse> routes(CreatePageHandler createPageHandler,
                                                  GetPageHandler getPageHandler,
                                                  UpdatePageHandler updatePageHandler,
+                                                 DeletePageHandler deletePageHandler,
                                                  CreatePagepartHandler createPagepartHandler) {
         return route()
             .POST("/api/page",
@@ -36,6 +37,10 @@ public class ApplicationRouter {
                 accept(MediaType.APPLICATION_JSON),
                 serverRequest -> updatePageById(updatePageHandler, serverRequest),
                 consumer -> consumer.beanClass(UpdatePageHandler.class).beanMethod("updatePageById").build())
+            .DELETE("/api/page/{id}",
+                accept(MediaType.APPLICATION_JSON),
+                serverRequest -> deletePageById(deletePageHandler, serverRequest),
+                consumer -> consumer.beanClass(DeletePageHandler.class).beanMethod("deletePageById").build())
             .POST("/api/pagepart",
                 accept(MediaType.APPLICATION_JSON),
                 serverRequest -> createPagepart(createPagepartHandler, serverRequest),
@@ -64,6 +69,12 @@ public class ApplicationRouter {
         return serverRequest.bodyToMono(PageUpdateCommandDTO.class)
             .flatMap(pageUpdateCommand -> updatePageHandler.updatePageById(pageId, pageUpdateCommand))
             .flatMap(pageDTO -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(pageDTO));
+    }
+
+    private Mono<ServerResponse> deletePageById(DeletePageHandler deletePageHandler, ServerRequest serverRequest) {
+        String pageId = serverRequest.pathVariable("id");
+        return deletePageHandler.deletePageById(pageId)
+            .flatMap(pageDTO -> ServerResponse.noContent().build());
     }
 
     private Mono<ServerResponse> createPagepart(CreatePagepartHandler createPagepartHandler, ServerRequest serverRequest) {

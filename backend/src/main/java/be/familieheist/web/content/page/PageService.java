@@ -33,6 +33,10 @@ public class PageService {
             .map(PageDBO::toDto);
     }
 
+    public Mono<Void> deletePageById(String id) {
+        return pageRepository.deleteById(id);
+    }
+
     private Mono<PageDTO> aggregatePageparts(PageDTO pageDTO) {
         return pagepartService.getPagepartById(pageDTO.id())
             .map(pageparts -> pageDTO.toBuilder().pageparts(pageparts).build());
