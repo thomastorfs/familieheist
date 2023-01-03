@@ -22,7 +22,7 @@ public class PagepartService {
             .map(PagepartDBO::toDto);
     }
 
-    public Mono<List<PagepartDTO>> getPagepartById(String pageId) {
+    public Mono<List<PagepartDTO>> getPagepartByPageId(String pageId) {
         return pagepartRepository
             .findByPageId(pageId)
             .map(PagepartDBO::toDto)

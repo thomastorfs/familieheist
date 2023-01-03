@@ -46,7 +46,7 @@ public class PageService {
 
     private Mono<PageDTO> aggregatePageparts(PageDTO pageDTO) {
         return pagepartService
-            .getPagepartById(pageDTO.id())
+            .getPagepartByPageId(pageDTO.id())
             .map(pageparts -> pageDTO.toBuilder().pageparts(pageparts).build());
     }
 }
