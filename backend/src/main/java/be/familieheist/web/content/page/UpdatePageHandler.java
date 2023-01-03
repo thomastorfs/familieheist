@@ -20,7 +20,7 @@ public class UpdatePageHandler {
         description = "Update a single Content Page",
 //        security = @SecurityRequirement(name = "basicAuth"),
         responses = {
-            @ApiResponse(responseCode = "200", description = "Successfully updated the Content Page"),
+            @ApiResponse(responseCode = "201", description = "Successfully updated the Content Page"),
             @ApiResponse(responseCode = "400", description = "Unable to update Content Page")
         }
     )

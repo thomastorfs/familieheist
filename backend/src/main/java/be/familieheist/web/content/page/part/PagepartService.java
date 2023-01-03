@@ -15,7 +15,7 @@ public class PagepartService {
     private final ItemService itemService;
 
     public Mono<PagepartDTO> createPagepart(PagepartCreateCommandDTO createCommandDTO) {
-        return pagepartRepository.save(createCommandDTO.toPagepartDBO())
+        return pagepartRepository.save(PagepartDBOCreator.createPagepartDBOFromCreateCommand(createCommandDTO))
             .map(PagepartDBO::toDto);
     }
 
@@ -25,6 +25,11 @@ public class PagepartService {
             .map(PagepartDBO::toDto)
             .flatMap(this::aggregateItems)
             .collectSortedList(Comparator.comparing(PagepartDTO::position));
+    }
+
+    public Mono<PagepartDTO> updatePagepartById(String id, PagepartUpdateCommandDTO updateCommandDTO) {
+        return pagepartRepository.save(PagepartDBOCreator.createPagepartDBOFromUpdateCommand(id, updateCommandDTO))
+            .map(PagepartDBO::toDto);
     }
 
     private Mono<PagepartDTO> aggregateItems(PagepartDTO pagepartDTO) {
