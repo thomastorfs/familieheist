@@ -36,7 +36,7 @@ public class ApplicationRouter {
                 accept(MediaType.APPLICATION_JSON),
                 serverRequest -> getPageById(getPageHandler, serverRequest),
                 consumer -> consumer.beanClass(GetPageHandler.class).beanMethod("getPageById").build())
-            .PUT("/api/page/{id}",
+            .PATCH("/api/page/{id}",
                 accept(MediaType.APPLICATION_JSON),
                 serverRequest -> updatePageById(updatePageHandler, serverRequest),
                 consumer -> consumer.beanClass(UpdatePageHandler.class).beanMethod("updatePageById").build())
@@ -48,7 +48,7 @@ public class ApplicationRouter {
                 accept(MediaType.APPLICATION_JSON),
                 serverRequest -> createPagepart(createPagepartHandler, serverRequest),
                 consumer -> consumer.beanClass(CreatePagepartHandler.class).beanMethod("createPagepart").build())
-            .PUT("/api/pagepart/{id}",
+            .PATCH("/api/pagepart/{id}",
                 accept(MediaType.APPLICATION_JSON),
                 serverRequest -> updatePagepartById(updatePagepartHandler, serverRequest),
                 consumer -> consumer.beanClass(UpdatePagepartHandler.class).beanMethod("updatePagepartById").build())
