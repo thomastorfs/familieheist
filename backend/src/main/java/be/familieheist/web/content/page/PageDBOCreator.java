@@ -8,7 +8,7 @@ public class PageDBOCreator {
         pageDBO.setNew(true);
         pageDBO.setId(UUID.randomUUID().toString());
         pageDBO.setTitle(commandDTO.title());
-        pageDBO.setDescription(commandDTO.description());
+        commandDTO.description().ifPresent(pageDBO::setDescription);
         pageDBO.setUrl(commandDTO.url());
         return pageDBO;
     }
@@ -17,7 +17,7 @@ public class PageDBOCreator {
         PageDBO pageDBO = new PageDBO();
         pageDBO.setId(id);
         pageDBO.setTitle(commandDTO.title());
-        pageDBO.setDescription(commandDTO.description());
+        commandDTO.description().ifPresent(pageDBO::setDescription);
         pageDBO.setUrl(commandDTO.url());
         return pageDBO;
     }
