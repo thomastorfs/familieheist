@@ -32,7 +32,10 @@ public class PagepartService {
 
     public Mono<PagepartDTO> updatePagepartById(String id, PagepartUpdateCommandDTO updateCommandDTO) {
         PagepartDBO pagepartDBO = PagepartDBOCreator.createPagepartDBOFromUpdateCommand(id, updateCommandDTO);
-        return pagepartRepository.save(pagepartDBO)
+        return pagepartRepository
+            .findById(id)
+            .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unable to update, no Content Pagepart found with ID `%s`".formatted(id))))
+            .flatMap(existingPageDBO -> pagepartRepository.save(pagepartDBO))
             .map(PagepartDBO::toDto);
     }
 
@@ -45,6 +48,7 @@ public class PagepartService {
 
     private Mono<PagepartDTO> aggregateItems(PagepartDTO pagepartDTO) {
         return itemService.getByPagepartId(pagepartDTO.id())
-            .map(items -> pagepartDTO.toBuilder().items(items).build());
+            .map(items -> pagepartDTO.toBuilder().items(items).build())
+            .defaultIfEmpty(pagepartDTO);
     }
 }
