@@ -20,7 +20,8 @@ public class UpdatePageHandler {
         description = "Update a single Content Page",
 //        security = @SecurityRequirement(name = "basicAuth"),
         responses = {
-            @ApiResponse(responseCode = "200", description = "Successfully updated the Content Page")
+            @ApiResponse(responseCode = "200", description = "Successfully updated the Content Page"),
+            @ApiResponse(responseCode = "400", description = "Unable to update Content Page")
         }
     )
     public Mono<PageDTO> updatePageById(@Parameter(in = ParameterIn.PATH, description = "Content Page ID") String id,

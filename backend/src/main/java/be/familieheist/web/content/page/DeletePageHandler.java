@@ -19,7 +19,8 @@ public class DeletePageHandler {
         description = "Delete a single Content Page by ID",
 //        security = @SecurityRequirement(name = "basicAuth"),
         responses = {
-            @ApiResponse(responseCode = "204", description = "Successfully deleted the Content Page")
+            @ApiResponse(responseCode = "204", description = "Successfully deleted the Content Page"),
+            @ApiResponse(responseCode = "400", description = "Unable to delete Content Page")
         }
     )
     public Mono<Void> deletePageById(@Parameter(in = ParameterIn.PATH, description = "Content Page ID") String id) {
