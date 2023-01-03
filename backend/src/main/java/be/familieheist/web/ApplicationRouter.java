@@ -1,10 +1,7 @@
 package be.familieheist.web;
 
 import be.familieheist.web.content.page.*;
-import be.familieheist.web.content.page.part.CreatePagepartHandler;
-import be.familieheist.web.content.page.part.PagepartCreateCommandDTO;
-import be.familieheist.web.content.page.part.PagepartUpdateCommandDTO;
-import be.familieheist.web.content.page.part.UpdatePagepartHandler;
+import be.familieheist.web.content.page.part.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -26,7 +23,8 @@ public class ApplicationRouter {
                                                  UpdatePageHandler updatePageHandler,
                                                  DeletePageHandler deletePageHandler,
                                                  CreatePagepartHandler createPagepartHandler,
-                                                 UpdatePagepartHandler updatePagepartHandler) {
+                                                 UpdatePagepartHandler updatePagepartHandler,
+                                                 DeletePagepartHandler deletePagepartHandler) {
         return route()
             .POST("/api/page",
                 accept(MediaType.APPLICATION_JSON),
@@ -52,6 +50,10 @@ public class ApplicationRouter {
                 accept(MediaType.APPLICATION_JSON),
                 serverRequest -> updatePagepartById(updatePagepartHandler, serverRequest),
                 consumer -> consumer.beanClass(UpdatePagepartHandler.class).beanMethod("updatePagepartById").build())
+            .DELETE("/api/pagepart/{id}",
+                accept(MediaType.APPLICATION_JSON),
+                serverRequest -> deletePagepartById(deletePagepartHandler, serverRequest),
+                consumer -> consumer.beanClass(DeletePagepartHandler.class).beanMethod("deletePagepartById").build())
             .resources("/*.css", new ClassPathResource("/static/"), builder -> builder.operationId("css"))
             .resources("/*.js", new ClassPathResource("/static/"), builder -> builder.operationId("js"))
             .resources("/*.ico", new ClassPathResource("/static/"), builder -> builder.operationId("ico"))
@@ -81,7 +83,7 @@ public class ApplicationRouter {
     private Mono<ServerResponse> deletePageById(DeletePageHandler deletePageHandler, ServerRequest serverRequest) {
         String pageId = serverRequest.pathVariable("id");
         return deletePageHandler.deletePageById(pageId)
-            .flatMap(pageDTO -> ServerResponse.noContent().build());
+            .flatMap(result -> ServerResponse.noContent().build());
     }
 
     private Mono<ServerResponse> createPagepart(CreatePagepartHandler createPagepartHandler, ServerRequest serverRequest) {
@@ -94,6 +96,12 @@ public class ApplicationRouter {
         String pagepartId = serverRequest.pathVariable("id");
         return serverRequest.bodyToMono(PagepartUpdateCommandDTO.class)
             .flatMap(pagepartUpdateCommand -> updatePagepartHandler.updatePagepartById(pagepartId, pagepartUpdateCommand))
-            .flatMap(pageDTO -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(pageDTO));
+            .flatMap(pagepartDTO -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(pagepartDTO));
+    }
+
+    private Mono<ServerResponse> deletePagepartById(DeletePagepartHandler deletePagepartHandler, ServerRequest serverRequest) {
+        String pagepartId = serverRequest.pathVariable("id");
+        return deletePagepartHandler.deletePagepartById(pagepartId)
+            .flatMap(result -> ServerResponse.noContent().build());
     }
 }
