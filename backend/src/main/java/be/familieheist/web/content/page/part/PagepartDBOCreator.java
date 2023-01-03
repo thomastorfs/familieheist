@@ -3,7 +3,7 @@ package be.familieheist.web.content.page.part;
 import java.util.UUID;
 
 public class PagepartDBOCreator {
-    public static PagepartDBO createPagepartDBOFromCreateCommand(PagepartCreateCommandDTO commandDTO) {
+    public static PagepartDBO createDBOFromCreateCommand(PagepartCreateCommandDTO commandDTO) {
         PagepartDBO pagepartDBO = new PagepartDBO();
         pagepartDBO.setNew(true);
         pagepartDBO.setId(UUID.randomUUID().toString());
@@ -15,7 +15,7 @@ public class PagepartDBOCreator {
         return pagepartDBO;
     }
 
-    public static PagepartDBO createPagepartDBOFromUpdateCommand(String id, PagepartUpdateCommandDTO commandDTO) {
+    public static PagepartDBO createDBOFromUpdateCommand(String id, PagepartUpdateCommandDTO commandDTO) {
         PagepartDBO pagepartDBO = new PagepartDBO();
         pagepartDBO.setId(id);
         pagepartDBO.setTitle(commandDTO.title());

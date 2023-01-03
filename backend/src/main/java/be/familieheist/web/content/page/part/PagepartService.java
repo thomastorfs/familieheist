@@ -17,7 +17,7 @@ public class PagepartService {
     private final ItemService itemService;
 
     public Mono<PagepartDTO> createPagepart(PagepartCreateCommandDTO createCommandDTO) {
-        PagepartDBO pagepartDBO = PagepartDBOCreator.createPagepartDBOFromCreateCommand(createCommandDTO);
+        PagepartDBO pagepartDBO = PagepartDBOCreator.createDBOFromCreateCommand(createCommandDTO);
         return pagepartRepository.save(pagepartDBO)
             .map(PagepartDBO::toDto);
     }
@@ -31,7 +31,7 @@ public class PagepartService {
     }
 
     public Mono<PagepartDTO> updatePagepartById(String id, PagepartUpdateCommandDTO updateCommandDTO) {
-        PagepartDBO pagepartDBO = PagepartDBOCreator.createPagepartDBOFromUpdateCommand(id, updateCommandDTO);
+        PagepartDBO pagepartDBO = PagepartDBOCreator.createDBOFromUpdateCommand(id, updateCommandDTO);
         return pagepartRepository
             .findById(id)
             .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unable to update, no Content Pagepart found with ID `%s`".formatted(id))))
