@@ -1,6 +1,5 @@
 package be.familieheist.web.security;
 
-import be.familieheist.web.system.user.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -15,9 +14,6 @@ import org.springframework.security.oauth2.server.resource.authentication.Reacti
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 @EnableWebFluxSecurity
 @EnableReactiveMethodSecurity

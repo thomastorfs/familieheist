@@ -1,5 +1,6 @@
 package be.familieheist.web;
 
+import be.familieheist.web.content.item.*;
 import be.familieheist.web.content.page.*;
 import be.familieheist.web.content.page.part.*;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +25,10 @@ public class ApplicationRouter {
                                                  DeletePageHandler deletePageHandler,
                                                  CreatePagepartHandler createPagepartHandler,
                                                  UpdatePagepartHandler updatePagepartHandler,
-                                                 DeletePagepartHandler deletePagepartHandler) {
+                                                 DeletePagepartHandler deletePagepartHandler,
+                                                 CreateItemHandler createItemHandler,
+                                                 UpdateItemHandler updateItemHandler,
+                                                 DeleteItemHandler deleteItemHandler) {
         return route()
             .POST("/api/page",
                 accept(MediaType.APPLICATION_JSON),
@@ -54,6 +58,18 @@ public class ApplicationRouter {
                 accept(MediaType.APPLICATION_JSON),
                 serverRequest -> deletePagepartById(deletePagepartHandler, serverRequest),
                 consumer -> consumer.beanClass(DeletePagepartHandler.class).beanMethod("deletePagepartById").build())
+            .POST("/api/item",
+                accept(MediaType.APPLICATION_JSON),
+                serverRequest -> createItem(createItemHandler, serverRequest),
+                consumer -> consumer.beanClass(CreateItemHandler.class).beanMethod("createItem").build())
+            .PATCH("/api/item/{id}",
+                accept(MediaType.APPLICATION_JSON),
+                serverRequest -> updateItemById(updateItemHandler, serverRequest),
+                consumer -> consumer.beanClass(UpdateItemHandler.class).beanMethod("updateItemById").build())
+            .DELETE("/api/item/{id}",
+                accept(MediaType.APPLICATION_JSON),
+                serverRequest -> deleteItemById(deleteItemHandler, serverRequest),
+                consumer -> consumer.beanClass(DeleteItemHandler.class).beanMethod("deleteItemById").build())
             .resources("/*.css", new ClassPathResource("/static/"), builder -> builder.operationId("css"))
             .resources("/*.js", new ClassPathResource("/static/"), builder -> builder.operationId("js"))
             .resources("/*.ico", new ClassPathResource("/static/"), builder -> builder.operationId("ico"))
@@ -102,6 +118,25 @@ public class ApplicationRouter {
     private Mono<ServerResponse> deletePagepartById(DeletePagepartHandler deletePagepartHandler, ServerRequest serverRequest) {
         String pagepartId = serverRequest.pathVariable("id");
         return deletePagepartHandler.deletePagepartById(pagepartId)
+            .flatMap(result -> ServerResponse.noContent().build());
+    }
+
+    private Mono<ServerResponse> createItem(CreateItemHandler createItemHandler, ServerRequest serverRequest) {
+        return serverRequest.bodyToMono(ItemCreateCommandDTO.class)
+            .flatMap(createItemHandler::createItem)
+            .flatMap(pagepartDTO -> ServerResponse.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).bodyValue(pagepartDTO));
+    }
+
+    private Mono<ServerResponse> updateItemById(UpdateItemHandler updateItemHandler, ServerRequest serverRequest) {
+        String itemId = serverRequest.pathVariable("id");
+        return serverRequest.bodyToMono(ItemUpdateCommandDTO.class)
+            .flatMap(itemUpdateCommand -> updateItemHandler.updateItemById(itemId, itemUpdateCommand))
+            .flatMap(itemDTO -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(itemDTO));
+    }
+
+    private Mono<ServerResponse> deleteItemById(DeleteItemHandler deleteItemHandler, ServerRequest serverRequest) {
+        String itemId = serverRequest.pathVariable("id");
+        return deleteItemHandler.deleteItemById(itemId)
             .flatMap(result -> ServerResponse.noContent().build());
     }
 }
