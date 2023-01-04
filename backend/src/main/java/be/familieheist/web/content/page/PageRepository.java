@@ -5,5 +5,6 @@ import reactor.core.publisher.Mono;
 
 public interface PageRepository extends ReactiveSortingRepository<PageDBO, String> {
     Mono<PageDBO> findById(String id);
+
     Mono<PageDBO> findByUri(String uri);
 }
