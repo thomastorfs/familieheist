@@ -14,7 +14,8 @@ public class DeletePagepartHandler {
     private final PagepartService pagepartService;
 
     @Operation(
-        tags = "deletePagepartById",
+        tags = "pagepart",
+        operationId = "deletePagepartById",
         summary = "Delete a Content Pagepart",
         description = "Delete a single Content Pagepart by ID",
 //        security = @SecurityRequirement(name = "basicAuth"),

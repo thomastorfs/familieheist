@@ -14,7 +14,8 @@ public class GetPageByUriHandler {
     private final PageService pageService;
 
     @Operation(
-        tags = "getPageByUri",
+        tags = "page",
+        operationId = "getPageByUri",
         summary = "Get Content Page by URI",
         description = "Return all information regarding a single Content Page",
 //        security = @SecurityRequirement(name = "basicAuth"),

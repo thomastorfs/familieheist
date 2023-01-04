@@ -13,7 +13,8 @@ public class CreatePageHandler {
     private final PageService pageService;
 
     @Operation(
-        tags = "createPage",
+        tags = "page",
+        operationId = "createPage",
         summary = "Create a Content Page",
         description = "Create a single Content Page",
 //        security = @SecurityRequirement(name = "basicAuth"),

@@ -13,7 +13,8 @@ public class CreateItemHandler {
     private final ItemService itemService;
 
     @Operation(
-        tags = "createItem",
+        tags = "item",
+        operationId = "createItem",
         summary = "Create a Content Item",
         description = "Create a single Content Item for a specific page",
 //        security = @SecurityRequirement(name = "basicAuth"),

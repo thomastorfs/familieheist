@@ -14,7 +14,8 @@ public class DeleteItemHandler {
     private final ItemService itemService;
 
     @Operation(
-        tags = "deleteItemById",
+        tags = "item",
+        operationId = "deleteItemById",
         summary = "Delete a Content Item",
         description = "Delete a single Content Item by ID",
 //        security = @SecurityRequirement(name = "basicAuth"),

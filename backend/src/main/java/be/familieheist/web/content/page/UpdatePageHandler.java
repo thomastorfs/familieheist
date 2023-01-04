@@ -15,7 +15,8 @@ public class UpdatePageHandler {
     private final PageService pageService;
 
     @Operation(
-        tags = "updatePageById",
+        tags = "page",
+        operationId = "updatePageById",
         summary = "Update Content Page",
         description = "Update a single Content Page",
 //        security = @SecurityRequirement(name = "basicAuth"),

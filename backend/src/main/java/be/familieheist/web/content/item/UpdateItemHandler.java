@@ -15,7 +15,8 @@ public class UpdateItemHandler {
     private final ItemService itemService;
 
     @Operation(
-        tags = "updateItemById",
+        tags = "item",
+        operationId = "updateItemById",
         summary = "Update a Content Item by ID",
         description = "Update a single Content Item by its identifier",
 //        security = @SecurityRequirement(name = "basicAuth"),

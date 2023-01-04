@@ -15,7 +15,8 @@ public class UpdatePagepartHandler {
     private final PagepartService pagepartService;
 
     @Operation(
-        tags = "updatePagepartById",
+        tags = "pagepart",
+        operationId = "updatePagepartById",
         summary = "Update a Content Pagepart by ID",
         description = "Update a single Content Pagepart by its identifier",
 //        security = @SecurityRequirement(name = "basicAuth"),

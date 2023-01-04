@@ -14,7 +14,8 @@ public class DeletePageHandler {
     private final PageService pageService;
 
     @Operation(
-        tags = "deletePageById",
+        tags = "page",
+        operationId = "deletePageById",
         summary = "Delete a Content Page",
         description = "Delete a single Content Page by ID",
 //        security = @SecurityRequirement(name = "basicAuth"),

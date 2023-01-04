@@ -16,7 +16,8 @@ public class GetPagesHandler {
     private final PageService pageService;
 
     @Operation(
-        tags = "getPages",
+        tags = "page",
+        operationId = "getPages",
         summary = "Get Content Pages",
         description = "Return basic information about Content Pages",
 //        security = @SecurityRequirement(name = "basicAuth"),

@@ -13,7 +13,8 @@ public class CreatePagepartHandler {
     private final PagepartService pagepartService;
 
     @Operation(
-        tags = "createPagepart",
+        tags = "pagepart",
+        operationId = "createPagepart",
         summary = "Create a Content Pagepart",
         description = "Create a single Content Pagepart for a specific page",
 //        security = @SecurityRequirement(name = "basicAuth"),

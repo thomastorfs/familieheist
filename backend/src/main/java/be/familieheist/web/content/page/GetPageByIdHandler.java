@@ -14,7 +14,8 @@ public class GetPageByIdHandler {
     private final PageService pageService;
 
     @Operation(
-        tags = "getPageById",
+        tags = "page",
+        operationId = "getPageById",
         summary = "Get Content Page by ID",
         description = "Return all information regarding a single Content Page",
 //        security = @SecurityRequirement(name = "basicAuth"),
