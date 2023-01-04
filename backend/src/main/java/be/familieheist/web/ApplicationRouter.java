@@ -20,7 +20,9 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 public class ApplicationRouter {
     @Bean
     public RouterFunction<ServerResponse> routes(CreatePageHandler createPageHandler,
-                                                 GetPageHandler getPageHandler,
+                                                 GetPageByIdHandler getPageByIdHandler,
+                                                 GetPageByUriHandler getPageByUriHandler,
+                                                 GetPagesHandler getPagesHandler,
                                                  UpdatePageHandler updatePageHandler,
                                                  DeletePageHandler deletePageHandler,
                                                  CreatePagepartHandler createPagepartHandler,
@@ -36,8 +38,16 @@ public class ApplicationRouter {
                 consumer -> consumer.beanClass(CreatePageHandler.class).beanMethod("createPage").build())
             .GET("/api/page/{id}",
                 accept(MediaType.APPLICATION_JSON),
-                serverRequest -> getPageById(getPageHandler, serverRequest),
-                consumer -> consumer.beanClass(GetPageHandler.class).beanMethod("getPageById").build())
+                serverRequest -> getPageById(getPageByIdHandler, serverRequest),
+                consumer -> consumer.beanClass(GetPageByIdHandler.class).beanMethod("getPageById").build())
+            .GET("/api/page/uri/{uri}",
+                accept(MediaType.APPLICATION_JSON),
+                serverRequest -> getPageByUri(getPageByUriHandler, serverRequest),
+                consumer -> consumer.beanClass(GetPageByUriHandler.class).beanMethod("getPageByUri").build())
+            .GET("/api/page/all",
+                accept(MediaType.APPLICATION_JSON),
+                serverRequest -> getPages(getPagesHandler),
+                consumer -> consumer.beanClass(GetPagesHandler.class).beanMethod("getPages").build())
             .PATCH("/api/page/{id}",
                 accept(MediaType.APPLICATION_JSON),
                 serverRequest -> updatePageById(updatePageHandler, serverRequest),
@@ -83,10 +93,21 @@ public class ApplicationRouter {
             .flatMap(pageDTO -> ServerResponse.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).bodyValue(pageDTO));
     }
 
-    private Mono<ServerResponse> getPageById(GetPageHandler getPageHandler, ServerRequest serverRequest) {
+    private Mono<ServerResponse> getPageById(GetPageByIdHandler getPageByIdHandler, ServerRequest serverRequest) {
         String pageId = serverRequest.pathVariable("id");
-        return getPageHandler.getPageById(pageId)
+        return getPageByIdHandler.getPageById(pageId)
             .flatMap(pageDTO -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(pageDTO));
+    }
+
+    private Mono<ServerResponse> getPageByUri(GetPageByUriHandler getPageByUriHandler, ServerRequest serverRequest) {
+        String pageUri = serverRequest.pathVariable("uri");
+        return getPageByUriHandler.getPageByUri(pageUri)
+            .flatMap(pageDTO -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(pageDTO));
+    }
+
+    private Mono<ServerResponse> getPages(GetPagesHandler getPagesHandler) {
+        return getPagesHandler.getPages()
+            .flatMap(pages -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(pages));
     }
 
     private Mono<ServerResponse> updatePageById(UpdatePageHandler updatePageHandler, ServerRequest serverRequest) {

@@ -19,10 +19,22 @@ databaseChangeLog:
                   name: description
                   type: varchar(1023)
               - column:
-                  name: url
+                  name: uri
                   type: varchar(255)
                   constraints:
                     uniqueConstraintName: uk_content_page_url
+              - column:
+                  name: date_created
+                  type: datetime
+              - column:
+                  name: date_updated
+                  type: datetime
+              - column:
+                  name: created_by
+                  type: varchar(31)
+              - column:
+                  name: updated_by
+                  type: varchar(31)
   - changeSet:
       id: create-content-pagepart-table
       author: thomastorfs

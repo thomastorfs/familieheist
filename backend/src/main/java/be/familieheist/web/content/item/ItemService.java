@@ -30,7 +30,7 @@ public class ItemService {
             .map(ItemDBO::toDto);
     }
 
-    public Mono<List<ItemDTO>> getByPagepartId(String pagepartId) {
+    public Mono<List<ItemDTO>> getItemsByPagepartId(String pagepartId) {
         return itemRepository
             .findByPagepartId(pagepartId)
             .map(ItemDBO::toDto)

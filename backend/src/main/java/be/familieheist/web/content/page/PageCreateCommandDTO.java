@@ -9,7 +9,7 @@ public record PageCreateCommandDTO(
     String title,
     @Schema(description = "The description of the Content Page", example = "This page shows a family tree")
     Optional<String> description,
-    @Schema(description = "The URL in order to access the Content Page in the Front-End", example = "familytree")
-    String url
+    @Schema(description = "The URI in order to access the Content Page in the Front-End", example = "familytree")
+    String uri
 ) {
 }

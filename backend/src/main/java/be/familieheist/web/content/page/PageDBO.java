@@ -7,6 +7,8 @@ import org.springframework.data.domain.Persistable;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.time.ZonedDateTime;
+
 @Data
 @Table("content_page")
 public class PageDBO implements Persistable<String> {
@@ -20,8 +22,20 @@ public class PageDBO implements Persistable<String> {
     @Column("description")
     private String description;
 
-    @Column("url")
-    private String url;
+    @Column("uri")
+    private String uri;
+
+    @Column("date_created")
+    private ZonedDateTime dateCreated;
+
+    @Column("date_updated")
+    private ZonedDateTime dateUpdated;
+
+    @Column("created_by")
+    private String createdBy;
+
+    @Column("updated_by")
+    private String updatedBy;
 
     @Transient
     private boolean isNew = false;
@@ -36,7 +50,11 @@ public class PageDBO implements Persistable<String> {
             .id(id)
             .title(title)
             .description(description)
-            .url(url)
+            .uri(uri)
+            .datedCreated(dateCreated)
+            .datedUpdated(dateUpdated)
+            .createdBy(createdBy)
+            .updatedBy(updatedBy)
             .build();
     }
 }

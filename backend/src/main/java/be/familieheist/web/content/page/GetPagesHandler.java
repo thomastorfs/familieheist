@@ -8,21 +8,23 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Component
-public class GetPageHandler {
+public class GetPagesHandler {
     private final PageService pageService;
 
     @Operation(
-        tags = "getPageById",
-        summary = "Get Content Page by ID",
-        description = "Return all information regarding a single Content Page",
+        tags = "getPages",
+        summary = "Get Content Pages",
+        description = "Return basic information about Content Pages",
 //        security = @SecurityRequirement(name = "basicAuth"),
         responses = {
-            @ApiResponse(responseCode = "200", description = "Successfully retrieved the Content Page")
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved the Content Pages")
         }
     )
-    public Mono<PageDTO> getPageById(@Parameter(in = ParameterIn.PATH, description = "Content Page ID") String id) {
-        return pageService.getPageById(id);
+    public Mono<List<PageDTO>> getPages() {
+        return pageService.getPages();
     }
 }

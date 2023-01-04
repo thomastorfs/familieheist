@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
+import java.util.Comparator;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PageService {
@@ -26,6 +29,21 @@ public class PageService {
             .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "No Content Page found with ID `%s`".formatted(id))))
             .map(PageDBO::toDto)
             .flatMap(this::aggregatePageparts);
+    }
+
+    public Mono<PageDTO> getPageByUri(String uri) {
+        return pageRepository
+            .findByUri(uri)
+            .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "No Content Page found with URI `%s`".formatted(uri))))
+            .map(PageDBO::toDto)
+            .flatMap(this::aggregatePageparts);
+    }
+
+    public Mono<List<PageDTO>> getPages() {
+        return pageRepository
+            .findAll()
+            .map(PageDBO::toDto)
+            .collectSortedList(Comparator.comparing(PageDTO::uri));
     }
 
     public Mono<PageDTO> updatePageById(String id, PageUpdateCommandDTO pageUpdateCommandDTO) {

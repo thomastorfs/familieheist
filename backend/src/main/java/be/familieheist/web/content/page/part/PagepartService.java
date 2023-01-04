@@ -47,7 +47,7 @@ public class PagepartService {
     }
 
     private Mono<PagepartDTO> aggregateItems(PagepartDTO pagepartDTO) {
-        return itemService.getByPagepartId(pagepartDTO.id())
+        return itemService.getItemsByPagepartId(pagepartDTO.id())
             .map(items -> pagepartDTO.toBuilder().items(items).build())
             .defaultIfEmpty(pagepartDTO);
     }

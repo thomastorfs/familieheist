@@ -1,5 +1,6 @@
 package be.familieheist.web.content.page;
 
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 public class PageDBOCreator {
@@ -9,7 +10,9 @@ public class PageDBOCreator {
         pageDBO.setId(UUID.randomUUID().toString());
         pageDBO.setTitle(commandDTO.title());
         commandDTO.description().ifPresent(pageDBO::setDescription);
-        pageDBO.setUrl(commandDTO.url());
+        pageDBO.setUri(commandDTO.uri());
+        pageDBO.setDateCreated(ZonedDateTime.now());
+        pageDBO.setCreatedBy("TODO get from authenticated user");
         return pageDBO;
     }
 
@@ -18,7 +21,9 @@ public class PageDBOCreator {
         pageDBO.setId(id);
         pageDBO.setTitle(commandDTO.title());
         commandDTO.description().ifPresent(pageDBO::setDescription);
-        pageDBO.setUrl(commandDTO.url());
+        commandDTO.uri().ifPresent(pageDBO::setUri);
+        pageDBO.setDateUpdated(ZonedDateTime.now());
+        pageDBO.setUpdatedBy("TODO get from authenticated user");
         return pageDBO;
     }
 }
